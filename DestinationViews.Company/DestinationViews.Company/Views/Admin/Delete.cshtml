@@ -1,0 +1,56 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Employee</h2>
+<h4 class="text-danger">&lt;Admin View&gt;</h4> <br />
+
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Full Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.user.Full_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.user.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.user.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Gender)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>

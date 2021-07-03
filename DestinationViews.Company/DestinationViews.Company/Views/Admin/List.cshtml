@@ -1,0 +1,97 @@
+﻿<style>
+    /* Define what each icon button should look like */
+    .button 
+    {
+        display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+        position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+        padding: 1px 5px 0px 0px; /* Add some padding so it looks nice */
+    }
+
+    /* Make the badge float in the top right corner of the button */
+    .button__badge 
+    {
+        background-color: #fa3e3e;
+        border-radius: 40px;
+        color: white;
+    
+        padding: 1px 3px;
+        font-size: 10px;
+    
+        position: absolute; /* Position the badge within the relatively positioned button */
+        top: 0;
+        right: 0;
+
+        /* The following is CSS3, but isn't crucial for this technique to work. */
+        /* Keep in mind that if a browser doesn't support CSS3, it's fine! They just won't have rounded borders and won't have a box shadow effect. */
+        /* You can always use a background image to produce the same effect if you want to, and you can use both together so browsers without CSS3 still have the rounded/shadow look. */
+        box-shadow: 1px 1px 1px 0px black;
+    }
+</style>
+
+@model DestinationViews.Company.Models.ViewModel
+@using DestinationViews.Company.Models
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Employees</h2>
+<h4 class="text-danger">&lt;Admin View&gt;</h4>
+<p class="text-danger">
+    @ViewBag.ErrorMessage
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Full Name")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @Html.DisplayName("Birth Date")
+        </th>
+        <th>
+            @Html.DisplayName("Gender")
+        </th>
+        <th>
+            @Html.DisplayName("Manage")
+        </th>
+    </tr>
+
+@for (int i = 0; i < Model.Employees.Count; i++)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Employees[i].user.Full_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Employees[i].user.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Employees[i].Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Employees[i].Gender)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Employees[i].ID }, htmlAttributes: new { @class = "badge" }) | 
+            <div class="button">
+                @Html.ActionLink("Requests", "Details", new { id = Model.Employees[i].ID }, htmlAttributes: new { @class = "badge" })
+                @if (Model.NumbersOfRequsts[i] != 0)
+                {
+                    @Html.ActionLink("" + Model.NumbersOfRequsts[i] + "", "Details", new { id = Model.Employees[i].ID }, htmlAttributes: new { @class = "badge button__badge" })
+                }
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    <hr />
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Set Balacne of Vacations", "Balance") 
+</div>

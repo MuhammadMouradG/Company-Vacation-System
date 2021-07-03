@@ -1,0 +1,81 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>
+    Details of 
+    <text class="text-danger">
+        @for (int i = 0; i < 1; i++)
+        {
+            @Html.DisplayFor(modelItem => Model.Requests[i].employee.user.Full_Name)
+        }
+    </text>
+     Requests
+</h2>
+<h4 class="text-danger">&lt;Admin View&gt;</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Type of Vacation")
+            </th>
+            <th>
+                @Html.DisplayName("Number of days")
+            </th>
+            <th>
+                @Html.DisplayName("Start date of Vacation")
+            </th>
+            <th>
+                @Html.DisplayName("End date of Vacation")
+            </th>
+            <th>
+                @Html.DisplayName("The state of the request")
+            </th>
+        </tr>
+
+        @for (int i = 0; i < Model.Requests.Count; i++)
+        {
+            @Html.HiddenFor(model => Model.Requests[i].ID)
+            @Html.HiddenFor(model => Model.Requests[i].EmployeeID)
+            @Html.HiddenFor(model => Model.Requests[i].EmpVacationTypeID)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Requests[i].empVacationType.TypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Requests[i].NumberOfDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Requests[i].StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Requests[i].EndDate)
+                </td>
+                <td>
+                    @Html.RadioButtonFor(modelItem => Model.Requests[i].Accepted, true) Accepted |
+                    @Html.RadioButtonFor(modelItem => Model.Requests[i].Accepted, false) Refused
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        <hr style="width: 50%" />
+        <div style="position: relative; left: 500px">
+            <input type="submit" value="Save Changes" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Back to List", "List", "Admin") |
+    @Html.ActionLink("Log out", "Login")
+</div>

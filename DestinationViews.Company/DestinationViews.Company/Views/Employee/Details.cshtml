@@ -1,0 +1,56 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Your Requests</h2>
+<h4 class="text-danger">&lt;Employee View&gt;</h4>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Type of Vacation")
+        </th>
+        <th>
+            @Html.DisplayName("Number of Days")
+        </th>
+        <th>
+            @Html.DisplayName("Start date of vacation")
+        </th>
+        <th>
+            @Html.DisplayName("Emd date of vacation")
+        </th>
+        <th>
+            @Html.DisplayName("State")
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Requests.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Requests[i].empVacationType.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Requests[i].NumberOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Requests[i].StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Requests[i].EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Requests[i].Accepted)
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <hr />
+    @Html.ActionLink("Back to My Profile", "Index", new { uID = Model.employee.UserID })
+</div>

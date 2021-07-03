@@ -1,0 +1,40 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "DeleteVacationType";
+}
+
+<h2>DeleteVacationType</h2>
+
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
+<div>
+    <h4 class="text-danger">&lt;Admin View&gt;</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.empVacationType.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empVacationType.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empVacationType.DefaultBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empVacationType.DefaultBalance)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

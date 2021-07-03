@@ -1,0 +1,58 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "Balance";
+}
+
+<h2>Balance of Vacations</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 class="text-danger">&lt;Admin View&gt;</h4>
+        <hr />
+
+        @for (int i = 0; i < Model.EmpVacationTypes.Count; i++)
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => Model.EmpVacationTypes[i].ID)
+
+            <div class="form-group">
+                @Html.Label("Vacation Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => Model.EmpVacationTypes[i].TypeName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => Model.EmpVacationTypes[i].TypeName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Balance", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => Model.EmpVacationTypes[i].DefaultBalance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => Model.EmpVacationTypes[i].DefaultBalance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Delete This Type", "DeleteVacationType", new { id = Model.EmpVacationTypes[i].ID })
+                </div>
+            </div>
+
+            <hr style="width:50%" />
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>

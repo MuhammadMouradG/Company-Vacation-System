@@ -1,0 +1,35 @@
+﻿@using DestinationViews.Company.Models;
+
+@model DestinationViews.Company.Models.ViewModel
+
+@if (Session["user"] != null)
+{
+    Model.user = Session["user"] as User;
+
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.DisplayFor(u => u.user.Email)
+        </li>
+        <li>
+            @if (Model.user.IsAdmin)
+            {
+                @Html.ActionLink("Employees", "List", "Admin")
+            }
+            else
+            {
+                @Html.ActionLink("My Profile", "Index", "Employee", routeValues: new { uID = Model.user.ID }, htmlAttributes: null)
+            }
+        </li>
+        <li>
+            @Html.ActionLink("Log out", "Logout", "Manage")
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "Login", "Manage", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

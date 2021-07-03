@@ -1,0 +1,80 @@
+﻿@model DestinationViews.Company.Models.ViewModel
+
+@{
+    ViewBag.Title = "MyProfile";
+}
+
+<h2>Details of <text class="text-danger">@Html.DisplayFor(model => model.user.Full_Name)</text></h2>
+<h4 class="text-danger">&lt;Employee View&gt;</h4>
+<p class="text-danger">
+    @ViewBag.ErrorMessage
+</p>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Full Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.Full_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Casual")
+        </dt>
+
+        <dd>
+            @ViewBag.Casual <span class="text-danger">of</span> @Html.DisplayFor(model => model.EmpVacationTypes.Single(t => t.ID == 1).DefaultBalance) 
+            @if (ViewBag.Casual >= Model.EmpVacationTypes.Single(t => t.ID == 1).DefaultBalance)
+            {
+                <text>| <span class="text-danger">WARNING:</span>You have exceeded the limit.</text>
+}
+
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Schedule")
+        </dt>
+
+        <dd>
+            @ViewBag.Schedule <span class="text-danger">of</span> @Html.DisplayFor(model => model.EmpVacationTypes.Single(t => t.ID == 2).DefaultBalance) 
+            @if (ViewBag.Schedule >= Model.EmpVacationTypes.Single(t => t.ID == 2).DefaultBalance)
+            {
+                <text>| <span class="text-danger">WARNING:</span>: You have exceeded the limit.</text>
+}
+        </dd>
+
+    </dl>
+
+</div>
+
+<p>
+    @Html.ActionLink("Show My Requests", "Details", new { uID = Model.user.ID }) |
+    @Html.ActionLink("Add New Request", "NewRequest", new { uID = Model.user.ID })
+</p>
