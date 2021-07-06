@@ -8,10 +8,10 @@ This Web application built using ASP.NET with MVC design pattern. This Web app p
 
 # Screenhots:
 1. Home Page
-![Home Page](./screenshots/Screenshot\ 2021-07-02\ 134753.png  "Home Page")
+![Home Page](./screenshots/Home_page.png "Home Page")
 
 2. Login Panel
-![Login Panel](./screenshots/login.png "Login Panal")
+![Login Panel](./screenshots/login.png "Login Panel")
 
 
 3. After login
@@ -19,7 +19,7 @@ This Web application built using ASP.NET with MVC design pattern. This Web app p
 
 
 4. Employees list
-![Employees List](./screenshots/Employess_view.png  "Employees list")
+![Employees List](./screenshots/Employess_view.png "Employees list")
 
 
 5. Request vacation list of employee
