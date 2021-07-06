@@ -6,7 +6,7 @@ This Web application built using ASP.NET with MVC design pattern. This Web app p
 4. employees vacation requests
 5. and other embeded features
 
-# Screenhots:
+# Screenshots:
 1. Home Page
 ![Home Page](./screenshots/Home_page.png "Home Page")
 
