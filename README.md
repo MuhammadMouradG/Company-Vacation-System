@@ -19,7 +19,7 @@ This Web application built using ASP.NET with MVC design pattern. This Web app p
 
 
 4. Employees list
-![Employees List](./screenshots/Employess_view.png "Employees list")
+![Employees List](./screenshots/Employees_view.png "Employees list")
 
 
 5. Request vacation list of employee
@@ -27,4 +27,4 @@ This Web application built using ASP.NET with MVC design pattern. This Web app p
 
 
 6. Balance setter
-![Balance setter](./screenshots/Set\ balance\ of\ vacation.png "Balance setter")
+![Balance setter](./screenshots/Set_balance_of_vacation.png "Balance setter")
